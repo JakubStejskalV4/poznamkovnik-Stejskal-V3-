@@ -1,1 +1,1 @@
-# poznamkovnik (Stejskal-V3)
+# poznamkovnik (Stejskal V3)
