@@ -1,1 +1,1 @@
-# poznamkovnik (Stejskal V3)
+# Aplikace on-line poznámky (Stejskal V3)
