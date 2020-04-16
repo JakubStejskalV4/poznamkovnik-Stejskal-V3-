@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Poznámkovník</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+</head>
+<body>
+    <h1>Poznámky</h1>
+    <div class="flex-container">
+        {% for i in poznamky %}
+        <div><a href="/smaz/{{ i[0] }}">Smazat</a></div>
+        <div>{{ i[1] }}</div>
+        <div>{{ i[2] }}</div>
+        {% endfor %}
+    </div>
+    <br>
+    <a href="/formular">Vložit poznámku</a>
+</body>
+</html>
