@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Poznámkovník</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+</head>
+<body>
+    <h1>Vlož poznámku</h1>
+    <form method="POST" action="/">
+        {{ form.csrf_token }} <br>
+        {{ form.poznamka() }} <br>
+        <br>
+        <input type="submit" value="Uložit">
+    </form>
+    <br>
+    <a href="/">Moje poznámky</a>
+</body>
+</html>
