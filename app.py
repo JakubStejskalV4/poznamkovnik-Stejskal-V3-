@@ -18,7 +18,7 @@ class PoznamkaForm(FlaskForm):
 @app.route('/formular', methods=['GET', 'POST'])
 def formular():
     form = PoznamkaForm()
-    poznamka_text = form.poznamka.data     
+    poznamka_text = form.poznamka.data
     if form.validate_on_submit():
         conn = sqlite3.connect(databaze)
         c = conn.cursor()
@@ -47,17 +47,17 @@ def smaz_poznamku(poznamka_id):
     return redirect('/')
 
 @app.route('/uprav/<int:poznamka_id>', methods=['GET', 'POST'])
-def uprav_poznamku(poznamka_id):      
+def uprav_poznamku(poznamka_id):
     conn = sqlite3.connect(databaze)
-    c = conn.cursor()    
-    c.execute("SELECT poznamka, vlozeno, dulezitost FROM poznamky WHERE rowid=?", (poznamka_id,))    
+    c = conn.cursor()
+    c.execute("SELECT poznamka, vlozeno, dulezitost FROM poznamky WHERE rowid=?", (poznamka_id,))
     poznamka_tuple = c.fetchone()
-    conn.close()    
+    conn.close()
     form = PoznamkaForm(poznamka=poznamka_tuple[0])
     poznamka_text = form.poznamka.data
     if form.validate_on_submit():
         conn = sqlite3.connect(databaze)
-        c = conn.cursor()        
+        c = conn.cursor()
         c.execute("UPDATE poznamky SET poznamka=? WHERE rowid=?", (poznamka_text, poznamka_id,))
         conn.commit()
         conn.close()
