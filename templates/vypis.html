@@ -9,7 +9,7 @@
     <h1>Poznámky</h1>
     <div class="flex-container">
         {% for i in poznamky %}
-        <div><a href="/smaz/{{ i[0] }}">Smazat</a></div>
+        <div><a href="/smaz/{{ i[0] }}">Smazat</a> <a href="/uprav/{{ i[0] }}">Upravit</a></div>
         <div>{{ i[1] }}</div>
         <div>{{ i[2] }}</div>
         {% endfor %}
