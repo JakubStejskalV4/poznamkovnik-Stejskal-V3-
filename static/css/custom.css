@@ -6,23 +6,23 @@
 }
 
 form {
-    background-color: blue;
+    background-color: green;
     padding: 20px;
 }
 
 textarea {
     height: 12rem;
-    width: 24rem;
+    width: 30rem;
 }
 
 .flex-container{
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: green;
 }
 
 .flex-container > div{
-    background-color: #f1f1f1;
+    background-color: green;
     width: 500px;
     margin: 10px;
     text-align: center;
@@ -32,4 +32,5 @@ textarea {
 
 h1{
     text-align: center;
+    text-decoration: underline;
 }
