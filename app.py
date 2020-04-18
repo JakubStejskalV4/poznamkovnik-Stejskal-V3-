@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, length
 from wtforms import TextAreaField
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 app.secret_key = 'svsdfvsdfvbadb  sfgsgsrg'
 
 aktualni_adresar = os.path.abspath(os.path.dirname(__file__))
@@ -14,15 +14,17 @@ databaze = (os.path.join(aktualni_adresar, 'poznamky.db'))
 
 class PoznamkaForm(FlaskForm):
     poznamka = TextAreaField("Poznámka", validators=[DataRequired(), length(max=250)])
+    dulezitost = TextAreaField("Důležitost", validators=[DataRequired()])
 
 @app.route('/formular', methods=['GET', 'POST'])
 def formular():
     form = PoznamkaForm()
     poznamka_text = form.poznamka.data
+    dulezitost_text = form.dulezitost.data
     if form.validate_on_submit():
         conn = sqlite3.connect(databaze)
         c = conn.cursor()
-        c.execute("INSERT INTO poznamky(poznamka) VALUES (?)", (poznamka_text,))
+        c.execute("INSERT INTO poznamky(poznamka, dulezitost) VALUES (?,?)", (poznamka_text, dulezitost_text,))
         conn.commit()
         conn.close()
         return redirect('/')
@@ -55,10 +57,11 @@ def uprav_poznamku(poznamka_id):
     conn.close()
     form = PoznamkaForm(poznamka=poznamka_tuple[0])
     poznamka_text = form.poznamka.data
+    dulezitost_text = form.dulezitost.data
     if form.validate_on_submit():
         conn = sqlite3.connect(databaze)
         c = conn.cursor()
-        c.execute("UPDATE poznamky SET poznamka=? WHERE rowid=?", (poznamka_text, poznamka_id,))
+        c.execute("UPDATE poznamky SET poznamka=?, dulezitost=? WHERE rowid=?", (poznamka_text, dulezitost_text, poznamka_id,))
         conn.commit()
         conn.close()
         return redirect('/')
