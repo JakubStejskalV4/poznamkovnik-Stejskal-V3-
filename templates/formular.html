@@ -2,14 +2,17 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Poznámkovník</title>
+    <title>Aplikace on-line poznámky (Stejskal V3)</title>
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
 </head>
 <body>
-    <h1>Vlož poznámku</h1>
+    <h1>Vlož poznámku:</h1>
     <form method="POST">
         {{ form.csrf_token }} <br>
+        <h2>Zpráva:</h2>
         {{ form.poznamka() }} <br>
+        <h2>Důležitost:</h2> <br>
+        {{ form.dulezitost() }} <br>
         <br>
         <input type="submit" value="Uložit">
     </form>
